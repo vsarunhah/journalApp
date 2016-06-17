@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.varun.journalentry.entryActivity"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#3E50B4"
+        android:paddingTop="5dp"
+        android:paddingLeft="5dp"
+        android:id="@+id/linearLayout">
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title of this journal entry"
+            android:textSize="30dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#a1c5c9c9"
+            android:maxLines="1"/>
+
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Date of the journal entry "
+            android:textColorHint="#a1c5c9c9"
+            android:textColor="@android:color/white"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/moodTextview"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mood?"
+        android:textSize="20dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="1dp"
+        android:layout_below="@+id/moodTextview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="5dp"
+        android:id="@+id/linearLayout2"
+        android:background="#0000">
+
+        <ImageButton
+            android:id="@+id/moodAngry"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/angry"/>
+        <ImageButton
+            android:id="@+id/moodHappy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/happy"/>
+        <ImageButton
+            android:id="@+id/moodFunny"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/funny"/>
+        <ImageButton
+            android:id="@+id/moodSad"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/sad"/>
+
+
+
+    </LinearLayout>
+
+
+
+    <EditText
+        android:id="@+id/detailsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:hint="Enter the details of your day here."
+        android:layout_below="@+id/linearLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:maxLines="16" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detailsText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Submit" />
+
+
+</RelativeLayout>
