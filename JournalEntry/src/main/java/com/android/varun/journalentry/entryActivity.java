@@ -16,11 +16,19 @@ import java.util.Date;
 import java.util.Locale;
 
 public class entryActivity extends AppCompatActivity {
-    EditText title, details, date;
-    ImageButton happy, sad, angry, funny;
+    EditText title, details, date, moodText;
     Button submitButton;
     MyDB myDB;
-    String mood;
+
+    Boolean mHappy = false;
+    Boolean mSad = false;
+    Boolean mAngry = false;
+    Boolean mFunny = false;
+
+    Boolean dHappy = false;
+    Boolean dSad = false;
+    Boolean dAngry = false;
+    Boolean dFunny = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,45 +46,8 @@ public class entryActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
-        happy = (ImageButton) findViewById(R.id.moodHappy);
-        sad = (ImageButton) findViewById(R.id.moodSad);
-        angry = (ImageButton) findViewById(R.id.moodAngry);
-        funny = (ImageButton) findViewById(R.id.moodFunny);
 
-        happy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mood = "Happy";
-                happy.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-        });
-
-
-        sad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mood = "Sad";
-                sad.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-        });
-
-
-        angry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mood = "Angry";
-                angry.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-        });
-
-
-        funny.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mood = "Funny";
-                funny.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-        });
+        moodText = (EditText) findViewById(R.id.moodText);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +66,7 @@ public class entryActivity extends AppCompatActivity {
 
         String Entrytitle = title.getText().toString();
         String entryDetails = details.getText().toString();
+        String mood = moodText.getText().toString();
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy", Locale.getDefault());
@@ -102,7 +74,7 @@ public class entryActivity extends AppCompatActivity {
 
         myDB.insertEntry(Entrytitle, mood, entryDetails, sdf.format(date));
         myDB.close();
-        Log.d("Database Updated ", Entrytitle + " added to db");
+        Log.d("Database Updated ", Entrytitle + " added to db " + mood + entryDetails);
 
     }
 }
