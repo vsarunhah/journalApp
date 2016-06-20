@@ -16,9 +16,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class entryActivity extends AppCompatActivity {
-    EditText title, details, date, moodText;
+    EditText title, details, date;
+    ImageButton happy, sad, angry, funny;
     Button submitButton;
     MyDB myDB;
+
+    String mood;
 
     Boolean mHappy = false;
     Boolean mSad = false;
@@ -46,8 +49,86 @@ public class entryActivity extends AppCompatActivity {
 
         submitButton = (Button) findViewById(R.id.submitButton);
 
+        happy = (ImageButton) findViewById(R.id.moodHappy);
+        sad = (ImageButton) findViewById(R.id.moodSad);
+        angry = (ImageButton) findViewById(R.id.moodAngry);
+        funny = (ImageButton) findViewById(R.id.moodFunny);
 
-        moodText = (EditText) findViewById(R.id.moodText);
+
+        happy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHappy = !mHappy;
+                if (mHappy == Boolean.TRUE) {
+                    happy.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    mood += "Happy ";
+
+                }
+                if (mHappy == Boolean.FALSE) {
+
+                    happy.setBackgroundColor(getResources().getColor(R.color.white));
+
+                }
+            }
+        });
+
+
+        sad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSad = !mSad;
+                if (mSad == Boolean.TRUE) {
+                    sad.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    mood += "Sad ";
+
+                }
+                if (mSad == Boolean.FALSE) {
+
+                    sad.setBackgroundColor(getResources().getColor(R.color.white));
+
+
+                }
+
+            }
+        });
+
+
+        angry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAngry = !mAngry;
+                if (mAngry == Boolean.TRUE) {
+                    angry.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    mood += "Angry ";
+
+                }
+                if (mAngry == Boolean.FALSE) {
+
+                    angry.setBackgroundColor(getResources().getColor(R.color.white));
+
+
+                }
+            }
+        });
+
+
+        funny.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFunny = !mFunny;
+                if (mFunny == Boolean.TRUE) {
+                    funny.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    mood += "Funny ";
+
+                }
+                if (mFunny == Boolean.FALSE) {
+
+                    funny.setBackgroundColor(getResources().getColor(R.color.white));
+
+
+                }
+            }
+        });
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +137,7 @@ public class entryActivity extends AppCompatActivity {
                 saveToDB();
             }
         });
+
 
     }
 
@@ -66,7 +148,6 @@ public class entryActivity extends AppCompatActivity {
 
         String Entrytitle = title.getText().toString();
         String entryDetails = details.getText().toString();
-        String mood = moodText.getText().toString();
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy", Locale.getDefault());

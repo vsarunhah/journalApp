@@ -60,12 +60,38 @@
         android:id="@+id/linearLayout2"
         android:background="#0000">
 
-        <EditText
-        android:id="@+id/moodText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:hint="What was your mood throughout the day?"/>
+        <ImageButton
+            android:id="@+id/moodAngry"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/angry"/>
+        <ImageButton
+            android:id="@+id/moodHappy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/happy"/>
+        <ImageButton
+            android:id="@+id/moodFunny"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/funny"/>
+        <ImageButton
+            android:id="@+id/moodSad"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moodTextview"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@mipmap/sad"/>
 
 
 
@@ -79,10 +105,10 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:hint="Enter the details of your day here."
-        android:maxLines="16"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:maxLines="16" />
 
     <Button
         android:id="@+id/submitButton"
@@ -92,17 +118,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="Submit" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Give some details about your day"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView"
-        android:textSize="20dp"
-        android:layout_marginTop="5dp"
-        android:padding="5dp"/>
 
 
 </RelativeLayout>
