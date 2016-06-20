@@ -2,13 +2,15 @@ package com.android.varun.journalentry.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.SyncStateContract;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
-/**
- * Created by Varun on 6/17/16.
- */
+import com.android.varun.journalentry.MainActivity;
+import com.android.varun.journalentry.R;
+
 public class MyDB {
 
     private SQLiteDatabase db;
@@ -38,4 +40,10 @@ public class MyDB {
         cv.put(constants.DETAIL_NAME, detail);
         return db.insert(constants.TABLE_NAME, null, cv);
     }
+
+    public Cursor getEntries(){
+        //Show what from table. null = eveything
+        return dbHelper.getReadableDatabase().query(constants.TABLE_NAME, null, null, null, null, null, null);
+    }
+
 }

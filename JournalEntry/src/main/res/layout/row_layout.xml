@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:background="#0288D1"
-    android:weightSum="1">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="#0288D1">
 
     <TextView
         android:id="@+id/rowTitle"
@@ -13,7 +13,8 @@
         android:text="Title Of The Day"
         android:textSize="40dp"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:fontFamily="a"/>
     <TextView
         android:id="@+id/rowDetails"
         android:layout_width="wrap_content"
@@ -23,16 +24,17 @@
         android:layout_marginLeft="9dp"
         android:layout_marginTop="15dp"
         android:textColor="@android:color/white"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/mood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Happy"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="0.79"
-        android:paddingTop="5dp"
-        android:textColor="#ffff"/>
+        android:layout_marginLeft="14dp"
+        android:textColor="#ffff"
+        android:textStyle="italic"/>
 
     <TextView
         android:id="@+id/rowDate"
@@ -41,6 +43,8 @@
         android:text="14 June, 2016"
         android:layout_marginRight="5dp"
         android:padding="5dp"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:layout_marginBottom="2dp"
+        android:textStyle="bold"/>
 
 </LinearLayout>

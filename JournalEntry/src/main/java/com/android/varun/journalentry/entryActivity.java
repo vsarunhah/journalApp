@@ -1,5 +1,6 @@
 package com.android.varun.journalentry;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,17 +22,13 @@ public class entryActivity extends AppCompatActivity {
     Button submitButton;
     MyDB myDB;
 
-    String mood;
+    String mood = "";
 
     Boolean mHappy = false;
     Boolean mSad = false;
     Boolean mAngry = false;
     Boolean mFunny = false;
 
-    Boolean dHappy = false;
-    Boolean dSad = false;
-    Boolean dAngry = false;
-    Boolean dFunny = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +153,9 @@ public class entryActivity extends AppCompatActivity {
         myDB.insertEntry(Entrytitle, mood, entryDetails, sdf.format(date));
         myDB.close();
         Log.d("Database Updated ", Entrytitle + " added to db " + mood + entryDetails);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
     }
 }

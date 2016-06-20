@@ -3,11 +3,7 @@ package com.android.varun.journalentry.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-/**
- * Created by Varun on 6/17/16.
- */
 public class DBHelper extends SQLiteOpenHelper {
 
     //    Create table query - SQLite
