@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.content.Intent;
 import android.widget.SimpleCursorAdapter;
@@ -18,6 +19,7 @@ import com.android.varun.journalentry.data.constants;
 public class MainActivity extends AppCompatActivity {
     static ListView entryList;
     MyDB myDB;
+    ImageButton addNewEntry;
 
 
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 //        Alt + Enter (option + return on Mac) to import missing classes like android.content.Intent.
         entryList = (ListView) findViewById(R.id.listEntries);
         myDB = new MyDB(this);
+        addNewEntry = (ImageButton) findViewById(R.id.addEntryButton);
         displayListView();
 
         entryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -42,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, detailsActivity.class);
                 intent.putExtra("clicked_item", position);
                 startActivity(intent);
+            }
+        });
+
+        addNewEntry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, entryActivity.class);
+                startActivity(i);
             }
         });
 
@@ -70,5 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 , cursor, from, to, 0);
         entryList.setAdapter(adapter);
         }
+
+
+
+
 
 }
