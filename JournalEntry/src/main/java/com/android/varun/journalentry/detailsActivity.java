@@ -65,6 +65,11 @@ public class detailsActivity extends AppCompatActivity {
                             "was my entry: " + details.getText()  + "."+ " And on that day I was " + mood.getText() + ".");
             intent.setType("text/plain");
             startActivity(intent);
+        }else if(id == R.id.editEntryButton){
+            Intent i = new Intent(detailsActivity.this, entryActivity.class);
+            i.putExtra("coming_from", "detailsActivity");
+            i.putExtra("clicked_item", position);
+            startActivity(i);
         }
         return true;
     }

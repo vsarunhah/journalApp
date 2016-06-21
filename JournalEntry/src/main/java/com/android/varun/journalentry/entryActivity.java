@@ -1,6 +1,7 @@
 package com.android.varun.journalentry;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.SimpleCursorAdapter;
 
 import com.android.varun.journalentry.data.MyDB;
+import com.android.varun.journalentry.data.constants;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +32,8 @@ public class entryActivity extends AppCompatActivity {
     Boolean mAngry = false;
     Boolean mFunny = false;
 
+    int position;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,12 +140,38 @@ public class entryActivity extends AppCompatActivity {
             }
         });
 
+        String comingFrom = getIntent().getStringExtra("coming_from");
+        if (comingFrom == null){ comingFrom = " ";}
+
+        if (comingFrom == "detailsActivity"){
+            position = getIntent().getIntExtra("clicked_item", 0);
+            SimpleCursorAdapter adapter = (SimpleCursorAdapter) MainActivity.entryList.getAdapter();
+            Cursor myCursor = adapter.getCursor();
+            myCursor.moveToPosition(position);
+            id = myCursor.getInt(myCursor.getColumnIndexOrThrow(constants.KEY_ID));
+            title.setText(myCursor.getString(myCursor.getColumnIndexOrThrow(constants.TITLE_NAME)));
+            details.setText(myCursor.getString(myCursor.getColumnIndexOrThrow(constants.DETAIL_NAME)));
+            submitButton.setText("Update Entry");
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    updateDB();
+                }
+            });
 
     }
 
 
+    }
 
-    public void saveToDB() {
+    private void updateDB() {
+        myDB.open();
+
+        myDB.updateEntry(title.getText().toString(), mood, details.getText().toString(), date.getText().toString(), id);
+    }
+
+
+    private void saveToDB() {
         myDB.open();
 
         String Entrytitle = title.getText().toString();

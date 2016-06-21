@@ -46,4 +46,13 @@ public class MyDB {
         return dbHelper.getReadableDatabase().query(constants.TABLE_NAME, null, null, null, null, null, null);
     }
 
+
+    public long updateEntry(String title, String mood, String detail, String date, int id){
+        ContentValues cv = new ContentValues();
+        cv.put(constants.TITLE_NAME, title);
+        cv.put(constants.DATE_NAME, date);
+        cv.put(constants.MOOD, mood);
+        cv.put(constants.DETAIL_NAME, detail);
+        return db.update(constants.TABLE_NAME, cv, constants.KEY_ID + "=" + id, null);
+    }
 }

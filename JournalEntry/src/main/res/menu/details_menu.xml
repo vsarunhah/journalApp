@@ -5,5 +5,11 @@
     android:title="share_Button"
     android:id="@+id/share_Button"
     android:icon="@android:drawable/ic_menu_share"
-    app:showAsAction="always" />
+    app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/editEntryButton"
+        android:title="Edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        app:showAsAction="ifRoom" />
 </menu>
