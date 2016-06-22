@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Title of this journal entry"
-            android:textSize="30dp"
+            android:textSize="25dp"
             android:textColor="@android:color/white"
             android:textColorHint="#a1c5c9c9"
             android:maxLines="1"/>
@@ -32,7 +32,9 @@
             android:hint="Date of the journal entry "
             android:textColorHint="#a1c5c9c9"
             android:textColor="@android:color/white"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:textSize="15dp"/>
+
     </LinearLayout>
 
     <TextView
@@ -62,32 +64,32 @@
 
         <ImageButton
             android:id="@+id/moodAngry"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width='78dp'
+            android:layout_height='78dp'
             android:layout_below="@+id/moodTextview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@mipmap/angry"/>
         <ImageButton
             android:id="@+id/moodHappy"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width='78dp'
+            android:layout_height='78dp'
             android:layout_below="@+id/moodTextview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@mipmap/happy"/>
         <ImageButton
             android:id="@+id/moodFunny"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width='78dp'
+            android:layout_height='78dp'
             android:layout_below="@+id/moodTextview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@mipmap/funny"/>
         <ImageButton
             android:id="@+id/moodSad"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width='78dp'
+            android:layout_height='78dp'
             android:layout_below="@+id/moodTextview"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"

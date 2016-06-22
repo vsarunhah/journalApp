@@ -2,6 +2,7 @@ package com.android.varun.journalentry;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
 import com.android.varun.journalentry.data.MyDB;
 import com.android.varun.journalentry.data.constants;
 
@@ -207,12 +210,13 @@ public class entryActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy", Locale.getDefault());
         Date date = new Date();
 
-        myDB.insertEntry(Entrytitle, mood, entryDetails, sdf.format(date));
-        myDB.close();
-        Log.d("Database Updated ", Entrytitle + " added to db " + mood + entryDetails);
 
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+            myDB.insertEntry(Entrytitle, mood, entryDetails, sdf.format(date));
+            myDB.close();
+            Log.d("Database Updated ", Entrytitle + " added to db " + mood + entryDetails);
+
+            Intent intent = new Intent(entryActivity.this, MainActivity.class);
+            startActivity(intent);
 
     }
 

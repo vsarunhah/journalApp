@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 , cursor, from, to, 0);
         entryList.setAdapter(adapter);
         }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -96,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+
         if (id==R.id.delete_All){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
             alertDialog.setTitle("Confirm Delete...");
@@ -111,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             });
+
+
             alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     // Write your code here to invoke NO event
