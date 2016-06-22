@@ -1,8 +1,5 @@
 package com.android.varun.journalentry.data;
 
-/**
- * Created by Varun on 6/17/16.
- */
 public class constants {
     //  Database Name
     public static final String DATABASE_NAME = "minimaldiaries";

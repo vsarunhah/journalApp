@@ -5,6 +5,9 @@ import android.database.Cursor;
 import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,9 +15,11 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.content.Intent;
 import android.widget.SimpleCursorAdapter;
-
+import android.content.DialogInterface;
 import com.android.varun.journalentry.data.MyDB;
 import com.android.varun.journalentry.data.constants;
+import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     static ListView entryList;
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         String[] from = new String[]{
                 constants.TITLE_NAME,
                 constants.DATE_NAME,
-                constants.MOOD,
+//                constants.MOOD,
                 constants.DETAIL_NAME
         };
 
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         int[] to = new int[]{
               R.id.rowTitle,
                 R.id.rowDate,
-                R.id.mood,
+//                R.id.mood,
                 R.id.rowDetails
 
         };
@@ -81,9 +86,41 @@ public class MainActivity extends AppCompatActivity {
                 , cursor, from, to, 0);
         entryList.setAdapter(adapter);
         }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
 
+        return true;
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id==R.id.delete_All){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+            alertDialog.setTitle("Confirm Delete...");
+            alertDialog.setMessage("Are you sure you want delete all the entries?");
+            alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,int which) {
+                    myDB.open();
+                    myDB.deleteAll(constants.TABLE_NAME);
+                    myDB.close();
+                    Intent i = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(i);
+                    Toast.makeText(getApplicationContext(), "You clicked on yes", Toast.LENGTH_SHORT).show();
+                }
 
-
-
+            });
+            alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // Write your code here to invoke NO event
+                    Toast.makeText(getApplicationContext(), "You clicked on no", Toast.LENGTH_SHORT).show();
+                    dialog.cancel();
+                }
+            });
+            alertDialog.show();
+            return true;
+        }
+        return false;
+    }
 }

@@ -22,6 +22,7 @@ import com.android.varun.journalentry.data.constants;
 public class detailsActivity extends AppCompatActivity {
     TextView title, mood, details, date;
     int position;
+    MyDB myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class detailsActivity extends AppCompatActivity {
         mood = (TextView) findViewById(R.id.Mood);
         details = (TextView) findViewById(R.id.Details);
         date = (TextView) findViewById(R.id.Date);
+
+        myDB = new MyDB(this);
 
         position = getIntent().getIntExtra("clicked_item",0);
         SimpleCursorAdapter adapter = (SimpleCursorAdapter) MainActivity.entryList.getAdapter();
@@ -65,12 +68,14 @@ public class detailsActivity extends AppCompatActivity {
                             "was my entry: " + details.getText()  + "."+ " And on that day I was " + mood.getText() + ".");
             intent.setType("text/plain");
             startActivity(intent);
+            return true;
         }else if(id == R.id.editEntryButton){
             Intent i = new Intent(detailsActivity.this, entryActivity.class);
             i.putExtra("coming_from", "detailsActivity");
             i.putExtra("clicked_item", position);
             startActivity(i);
+            return true;
         }
-        return true;
+        return false;
     }
 }

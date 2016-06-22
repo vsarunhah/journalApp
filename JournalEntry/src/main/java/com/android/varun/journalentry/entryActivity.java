@@ -5,13 +5,17 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
-
+import android.content.DialogInterface;
 import com.android.varun.journalentry.data.MyDB;
 import com.android.varun.journalentry.data.constants;
 
@@ -24,6 +28,8 @@ public class entryActivity extends AppCompatActivity {
     ImageButton happy, sad, angry, funny;
     Button submitButton;
     MyDB myDB;
+
+    ImageView imageShow;
 
     String mood = "";
 
@@ -55,7 +61,6 @@ public class entryActivity extends AppCompatActivity {
         sad = (ImageButton) findViewById(R.id.moodSad);
         angry = (ImageButton) findViewById(R.id.moodAngry);
         funny = (ImageButton) findViewById(R.id.moodFunny);
-
 
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,17 +138,19 @@ public class entryActivity extends AppCompatActivity {
         });
 
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveToDB();
-            }
-        });
+
 
         String comingFrom = getIntent().getStringExtra("coming_from");
-        if (comingFrom == null){ comingFrom = " ";}
+        if (comingFrom == null){
+            comingFrom = " ";
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    saveToDB();
+                }
+            });}
 
-        if (comingFrom == "detailsActivity"){
+        if (comingFrom.equals("detailsActivity")){
             position = getIntent().getIntExtra("clicked_item", 0);
             SimpleCursorAdapter adapter = (SimpleCursorAdapter) MainActivity.entryList.getAdapter();
             Cursor myCursor = adapter.getCursor();
@@ -159,15 +166,34 @@ public class entryActivity extends AppCompatActivity {
                 }
             });
 
+    } }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.entry_menu, menu);
+
+        return true;
+
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+             int id = item.getItemId();
+                if (id == R.id.delete_Button){
+                    deleteEntryOfDB();
+                    return true;
+                }
+        return false;
     }
 
 
-    }
 
     private void updateDB() {
         myDB.open();
 
         myDB.updateEntry(title.getText().toString(), mood, details.getText().toString(), date.getText().toString(), id);
+
+        myDB.close();
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
     }
 
 
@@ -189,4 +215,17 @@ public class entryActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    private void deleteEntryOfDB(){
+        myDB.open();
+
+        myDB.deleteEntry(id);
+
+        myDB.close();
+
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
+
+
 }

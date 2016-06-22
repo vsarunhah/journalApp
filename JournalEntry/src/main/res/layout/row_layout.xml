@@ -27,14 +27,14 @@
         android:textSize="20dp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/mood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Happy"
-        android:layout_marginLeft="14dp"
-        android:textColor="#ffff"
-        android:textStyle="italic"/>
+    <!--<TextView-->
+        <!--android:id="@+id/mood"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Happy"-->
+        <!--android:layout_marginLeft="14dp"-->
+        <!--android:textColor="#ffff"-->
+        <!--android:textStyle="italic"/>-->
 
     <TextView
         android:id="@+id/rowDate"
