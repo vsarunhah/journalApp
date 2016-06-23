@@ -1,5 +1,7 @@
 package com.android.varun.journalentry;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.SyncStateContract;
@@ -20,6 +22,8 @@ import com.android.varun.journalentry.data.MyDB;
 import com.android.varun.journalentry.data.constants;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     static ListView entryList;
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        setReminder();
 
     }
 
@@ -109,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                     myDB.deleteAll(constants.TABLE_NAME);
                     myDB.close();
                     Intent i = new Intent(MainActivity.this, MainActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                     Toast.makeText(getApplicationContext(), "You clicked on yes", Toast.LENGTH_SHORT).show();
                 }
@@ -127,5 +134,19 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+
+    public void setReminder(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND, 0);
+        Intent notificationMessage = new Intent(this, notificationHelper.class);
+
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, notificationMessage,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pi);
     }
 }
