@@ -213,7 +213,6 @@ public class entryActivity extends AppCompatActivity {
 
             myDB.insertEntry(Entrytitle, mood, entryDetails, sdf.format(date));
             myDB.close();
-            Log.d("Database Updated ", Entrytitle + " added to db " + mood + entryDetails);
 
             Intent intent = new Intent(entryActivity.this, MainActivity.class);
             startActivity(intent);

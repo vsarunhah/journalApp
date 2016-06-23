@@ -23,7 +23,6 @@ public class notificationHelper extends BroadcastReceiver
     {
         PendingIntent pendingIntent = PendingIntent.getActivity
                 (context, 0, new Intent(context, entryActivity.class), 0);
-        Log.d("Notification Helper", "Notification Set");
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("How was your day?")

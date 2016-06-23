@@ -24,5 +24,6 @@
         android:src="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:id="@+id/addEntryButton" />
+        android:id="@+id/addEntryButton"
+        android:elevation="10dp"/>
 </RelativeLayout>
